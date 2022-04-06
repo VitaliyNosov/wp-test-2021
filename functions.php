@@ -67,8 +67,9 @@ function wordpress_test_2021_scripts() {
 	// scripts
 	wp_deregister_script('jquery');
 	wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
-	wp_enqueue_script('scripts', get_template_directory_uri() .'/assets/js/main.js', array('jquery'), null, true);
+	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script('slick', get_template_directory_uri() .'/assets/js/slick.min.js', array('jquery'), null, true);
+	wp_enqueue_script('scripts', get_template_directory_uri() .'/assets/js/main.js', array('jquery'), null, true);
 
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -141,6 +142,102 @@ function show_svg_in_media_library( $response ) {
 }
 
 
+// ACF pro development block to Gutenberg
 
+add_action('enqueue_block_editor_assets','wordpress_test_2021_scripts');
+
+// add_action( 'admin_enqueue_scripts', 'wordpress_test_2021_scripts' );
+
+add_action('acf/init', 'my_acf_blocks_init');
+
+function my_acf_blocks_init() {
+
+    // Check function exists.
+    if( function_exists('acf_register_block_type') ) {
+
+        // Register block content
+        acf_register_block_type(array(
+            'name'              => 'get-content',
+            'title'             => __('Блок-контент'),
+            'description'       => __('ACF test'),
+            'render_template'   => 'modules/part-content.php',
+            'category'          => 'formatting',
+			'mode'              => 'preview',
+			'keywords'          => array('Блок-контент','acf'),
+        ));
+
+		// Register block info
+        acf_register_block_type(array(
+            'name'              => 'get-info',
+            'title'             => __('Блок-информации'),
+            'description'       => __('ACF test'),
+            'render_template'   => 'modules/part-info.php',
+            'category'          => 'formatting',
+			'mode'              => 'preview',
+			'keywords'          => array('Блок-информации','acf'),
+        ));
+
+		// Register block slider
+        acf_register_block_type(array(
+            'name'              => 'get-slider',
+            'title'             => __('Блок-слайдер'),
+            'description'       => __('ACF test'),
+            'render_template'   => 'modules/part-slider.php',
+            'category'          => 'formatting',
+			'mode'              => 'preview',
+			'keywords'          => array('Блок-слайдер','acf'),
+        ));
+
+		// Register block form
+        acf_register_block_type(array(
+            'name'              => 'get-form',
+            'title'             => __('Блок-форма'),
+            'description'       => __('ACF test'),
+            'render_template'   => 'modules/part-form.php',
+            'category'          => 'formatting',
+			'mode'              => 'preview',
+			'keywords'          => array('Блок-форма','acf'),
+        ));
+
+		// register a testimonial block.
+        acf_register_block_type(array(
+            'name'              => 'slider',
+            'title'             => __('Slider'),
+            'description'       => __('A custom slider block.'),
+            'render_template'   => 'template-parts/blocks/slider/slider.php',
+			'category'          => 'formatting',
+			'icon' 				=> 'images-alt2',
+			'align'				=> 'full',
+			'enqueue_assets' 	=> function(){
+				wp_enqueue_style( 'slick', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', array(), '1.8.1' );
+				wp_enqueue_style( 'slick-theme', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css', array(), '1.8.1' );
+				wp_enqueue_script( 'slick', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array('jquery'), '1.8.1', true );
+
+				wp_enqueue_style( 'block-slider', get_template_directory_uri() . '/template-parts/blocks/slider/slider.css', array(), '1.0.0' );
+				wp_enqueue_script( 'block-slider', get_template_directory_uri() . '/template-parts/blocks/slider/slider.js', array(), '1.0.0', true );
+			  },
+        ));
+
+		// slider two register a testimonial block.
+        acf_register_block_type(array(
+            'name'              => 'slider-two',
+            'title'             => __('Slider-two'),
+            'description'       => __('A custom slider-two block.'),
+            'render_template'   => 'template-parts/blocks/slider-two/slider-two.php',
+			'category'          => 'formatting',
+			'icon' 				=> 'images-alt2',
+			'align'				=> 'full',
+			'enqueue_assets' 	=> function(){
+				wp_enqueue_style( 'slick-two', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', array(), '1.8.1' );
+				wp_enqueue_style( 'slick-theme-two', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css', array(), '1.8.1' );
+				wp_enqueue_script( 'slick-two', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array('jquery'), '1.8.1', true );
+
+				wp_enqueue_style( 'block-slider-two', get_template_directory_uri() . '/template-parts/blocks/slider-two/slider-two.css', array(), '1.0.0' );
+				wp_enqueue_script( 'block-slider-two', get_template_directory_uri() . '/template-parts/blocks/slider-two/slider-two.js', array(), '1.0.0', true );
+			  },
+        ));
+
+    }
+}
 
 

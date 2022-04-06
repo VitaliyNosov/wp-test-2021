@@ -75,7 +75,8 @@
                     <div class="social__block">
                         <?php dynamic_sidebar('sidebar-1'); ?>
                         <!-- <p>© 2020 Friendly All rights reserved</p> -->
-                        <div class="icons">
+                        <?php get_template_part('modules/part','icons'); ?>
+                        <!-- <div class="icons">
                             <div class="icon">               
                                 <a target="_blanck" href="<?php the_field('instagram_link'); ?>">
                                     <i class="fab fa-instagram"></i></div>
@@ -95,7 +96,7 @@
                                     <i class="fab fa-youtube"></i>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                     </div> 
                 </div>
             </div>

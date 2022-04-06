@@ -1,0 +1,26 @@
+.slider {
+    padding: 0 0 5px;
+}
+.slider .slides img {
+    height: 90vh;
+    max-width: auto;
+    padding: 2vh;
+    /* border: 1px solid red; */
+    
+}
+.slider.is-admin:before {
+    display: block;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    position: absolute;
+    z-index: 1;
+}
+
+.block-slider{
+    width: 100%;
+    margin: 0 auto;
+    overflow-x:hidden;
+}

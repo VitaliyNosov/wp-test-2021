@@ -1,4 +1,6 @@
-$(document).ready(function () {
+jQuery(document).ready(function( $ ) {
+
+console.log('Проверка работоспособности!');
 
 // burger menu
 
@@ -23,6 +25,8 @@ $('.multiple-items').slick({
     nextArrow: $('.next')
   });
     
-    
-    
+
 });
+
+
+

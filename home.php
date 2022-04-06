@@ -7,32 +7,12 @@ get_header();
 
 <?php
 
-if( have_posts() ){
-
-	while( have_posts() ){
-		the_post();
-		?>
-
-		<div <?php post_class(); ?> id="post-<?php the_ID(); ?>">
-			<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-			<?php the_content(); ?>
-		</div>
-
-		<?php
-	}
-	?>
-
-	<div class="navigation">
-		<div class="next-posts"><?php next_posts_link(); ?></div>
-		<div class="prev-posts"><?php previous_posts_link(); ?></div>
-	</div>
-
-	<?php
-}
-
-else {
-	echo "<h2>Записей нет.</h2>";
-}
+global $more;
+while( have_posts() ) : the_post();
+	$more = 1; // отображаем полностью всё содержимое поста
+	the_title(); // эта функция выводит заголовок
+	the_content(); // выводим контент
+endwhile;
 
 ?>
 
