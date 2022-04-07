@@ -1,12 +1,15 @@
 .slider-body{
     margin: 50px 0px 50px 0px;
 }
+
 .slider-two {
     padding: 0 0 5px;
 }
 .slider-two .slides-two img {
     max-width: auto;
-    /* padding: 2vh; */
+    padding: 2vh;
+    height: auto;
+    max-height: 550px;
     
 }
 .slider-two.is-admin:before {
@@ -38,6 +41,9 @@
 }
 
 @media(max-width: 1024px) {
+    .block-slider-two{
+        width: 82%;
+    }
     .slider-two-block{
         margin-top: 20%;
     }
