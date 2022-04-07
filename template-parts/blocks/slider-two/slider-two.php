@@ -28,34 +28,39 @@ if( $is_preview ) {
 }
 
 ?>
+	<div class="slider-body">
 
+			<!-- slick slider custome button -->
 
-<div class="slider-two-block">
+			<div class="slider-two-block">
                     <div class="next next-slider-two">
-                        <
+						<i class="fas fa-long-arrow-alt-left"></i>
                     </div>
                     <div class="prev prev-slider-two">
-                        >
+						<i class="fas fa-long-arrow-alt-right"></i>
                     </div>
-</div>
-
-
-<div class="block-slider-two">
-
-	<div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
-    	<?php if( have_rows('slides-two') ): ?>
-			<div class="slides-two">
-				<?php while( have_rows('slides-two') ): the_row(); 
-					$image = get_sub_field('image-two');
-					?>
-					<div>
-						<?php echo wp_get_attachment_image( $image['id'], 'full' ); ?>
-					</div>
-				<?php endwhile; ?>
 			</div>
-		<?php else: ?>
-			<p>Please add some slides-two Vitaliy.</p>
-		<?php endif; ?>
-	</div>
 
-</div>
+			<!-- slick slider block -->
+
+			<div class="block-slider-two">
+
+			<div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
+    			<?php if( have_rows('slides-two') ): ?>
+					<div class="slides-two">
+						<?php while( have_rows('slides-two') ): the_row(); 
+							$image = get_sub_field('image-two');
+						?>
+						<div>
+							<?php echo wp_get_attachment_image( $image['id'], 'full' ); ?>
+						</div>
+					<?php endwhile; ?>
+				</div>
+					<?php else: ?>
+						<p>Please add some slides-two Vitaliy.</p>
+					<?php endif; ?>
+				</div>
+
+			</div>
+
+	</div>
